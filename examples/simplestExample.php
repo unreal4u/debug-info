@@ -1,6 +1,6 @@
 <?php
 
-include('../debugInfo.class.php');
+include('../src/unreal4u/debugInfo.class.php');
 
 function myProcess() {
     for ($i = 0; $i < 200000; $i++) {
@@ -10,6 +10,6 @@ function myProcess() {
     return true;
 }
 
-$benchmark = new \u4u\debugInfo('bigProcess');
+$benchmark = new unreal4u\debugInfo('bigProcess');
 myProcess();
 printf('Total time spent in %s: %.6f', 'bigProcess', $benchmark->endCounter('bigProcess', 'time'));

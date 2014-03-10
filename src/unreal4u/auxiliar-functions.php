@@ -1,7 +1,5 @@
 <?php
 
-use \u4u;
-
 /**
  * Implements debugInfo::debug as a function
  *
@@ -12,7 +10,7 @@ use \u4u;
  * @return Ambigous <string, boolean>
  */
 function debug($a, $print=true, $message='') {
-    return \u4u\debugInfo::debug($a, $print, $message);
+    return unreal4u\debugInfo::debug($a, $print, $message);
 }
 
 /**
@@ -25,7 +23,7 @@ function debug($a, $print=true, $message='') {
  * @return Ambigous <boolean, number>
  */
 function debugFile($message='', $filename='', $directory='') {
-    return \u4u\debugInfo::debugFile($message, $filename, $directory);
+    return unreal4u\debugInfo::debugFile($message, $filename, $directory);
 }
 
 /**
@@ -38,7 +36,7 @@ function debugFile($message='', $filename='', $directory='') {
  * @return Ambigous <string, boolean>
  */
 function debugFirePHP($a, $print=false, $message='') {
-    return \u4u\debugInfo::debugFirePHP($a, $print, $message);
+    return unreal4u\debugInfo::debugFirePHP($a, $print, $message);
 }
 
 /**
@@ -47,7 +45,7 @@ function debugFirePHP($a, $print=false, $message='') {
  * @see debugInfo::throwExceptions()
  */
 function throwExceptions() {
-    return \u4u\debugInfo::throwExceptions();
+    return unreal4u\debugInfo::throwExceptions();
 }
 
 /**
@@ -57,5 +55,5 @@ function throwExceptions() {
  * @return float
  */
 function getExactTime() {
-    return \u4u\debugInfo::getExactTime();
+    return unreal4u\debugInfo::getExactTime();
 }

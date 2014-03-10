@@ -1,11 +1,10 @@
 <?php
 
-use \u4u\debugInfo;
-include('../debugInfo.class.php');
+include('../src/unreal4u/debugInfo.class.php');
 
 throwExceptions();
 
-$debugInfo = new \u4u\debugInfo('beginScript');
+$debugInfo = new unreal4u\debugInfo('beginScript');
 printf('The exact timestamp at which this script started is %.4f (%s) and we are using %s of memory',
     getExactTime(),
     $debugInfo::convertTimestamp(getExactTime()),
@@ -47,7 +46,7 @@ $array = array(
 foreach($array AS $value) {
     debug($value, true, 'VALUE:: ');
     $debugString = debug($value, false, 'VAL:: ');
-    debugInfo::debugFirePHP($value);
+    unreal4u\debugInfo::debugFirePHP($value);
     print $debugString;
 }
 
@@ -63,7 +62,7 @@ debug($writtenToFile, true, 'Written to file: ');
 
 print($debugInfo);
 
-debugInfo::debugFirePHP($array);
+unreal4u\debugInfo::debugFirePHP($array);
 
 $debugInfo->endCounter('beginScript');
 

@@ -8,12 +8,12 @@ function myProcess() {
     return true;
 }
 
-include('../debugInfo.class.php');
+include('../src/unreal4u/debugInfo.class.php');
 
 debug('hello!');
 
 debug(str_repeat('-', 80));
-$a = new u4u\debugInfo();
+$a = new unreal4u\debugInfo();
 
 print('object printing with var_dump: ');
 var_dump($a);

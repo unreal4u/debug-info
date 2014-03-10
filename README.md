@@ -29,10 +29,10 @@ debug($variable);
 Version History
 ----------
 
-* 0.1 : 
+* 0.1 :
     * Original class
 
-* 0.2 : 
+* 0.2 :
     * Many improvements, such as:
         * General cleanup
         * Code is now more consistent
@@ -43,6 +43,9 @@ Version History
 * 1.0 :
     * Integrated old class "benchmark" into this one
     * Some minor bug fixes
+* 2.0 :
+    * Compatible with composer
+    * Refined auto-format output
 
 Contact the author
 -------

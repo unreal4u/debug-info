@@ -1,20 +1,20 @@
 <?php
 
-namespace u4u;
+namespace unreal4u;
 
 /**
  * Common used functions when debugging applications
  *
  * @package debugInfo
  * @author Camilo Sperberg - http://unreal4u.com/
- * @version 1.0
+ * @version 2.0
  */
 class debugInfo {
     /**
      * Version of this class
      * @var string
      */
-    private $version = '1.0';
+    private $classVersion = '2.0';
 
     /**
      * The format of the timestamp that will be printed, based on strftime
@@ -57,7 +57,7 @@ class debugInfo {
         } else {
             $eol = '<br />';
         }
-        return 'debugInfo v'.$this->version.' by unreal4u - http://unreal4u.com/'.$eol;
+        return basename(__FILE__).' v'.$this->classVersion.' by unreal4u - Camilo Sperberg - http://unreal4u.com/'.$eol;
     }
 
     /**
@@ -150,26 +150,31 @@ class debugInfo {
      *     <li>The initial setup requires enabling the Console and Net tabs within Firebug</li>
      *     <li>FirePHP PHP classes:
      *         <ul>
-     *             <li>You need to install PEAR:
+     *             <li><strong>composer/packagist</strong>
+     *                 <ul><li>Execute <code>composer.phar install</code> or <code>composer.phar update</code></li>
+     *                 <li>You're good to go!</li></ul>
+     *             </li>
+     *             <li><strong>PEAR</strong>
      *                 <ul><li><code>wget http://pear.php.net/go-pear</code></li>
      *                     <li><code>php go-pear.php</code></li>
-     *                 </ul>
-     *             </li>
-     *             <li>Then you need to install FirePHPCore code:
-     *                 <ul><li><code>pear channel-discover pear.firephp.org</code></li>
-     *                     <li><code>pear install firephp/FirePHPCore</code></li>
+     *                     <li>Then you need to install FirePHPCore code:
+     *                         <ul><li><code>pear channel-discover pear.firephp.org</code></li>
+     *                             <li><code>pear install firephp/FirePHPCore</code></li>
+     *                             <li>You <strong>MUST</strong> include the FirePHPCore class (manually) by yourself!
+     *                                 <ul><li><code>include_once('FirePHPCore/FirePHP.class.php');</code></li></ul>
+     *                             </li>
+     *                         </ul>
+     *                     </li>
      *                 </ul>
      *             </li>
      *         </ul>
      *     </li>
      * </ul>
      *
-     * After that, you can include the FirePHP library (already done in the class) and finally print to it. The result
-     * will appear in the Console tab within Firebug.
+     * The result of the output will appear in the Console tab within Firebug.
      *
      * Usage is exactly the same as the debug() function within this same class.
      *
-     * @throws Exception Will throw an exception if FirePHP class isn't found
      * @throws Exception Will throw an exception if headers are already sent
      * @param mixed $a Whatever we want to print
      * @param boolean $print Whether to print immediatly or not. Ignored for this function
@@ -177,11 +182,7 @@ class debugInfo {
      */
     public static function debugFirePHP($a=null, $print=false, $message='') {
         if (!headers_sent()) {
-            include_once('FirePHPCore/FirePHP.class.php');
-
-            if (!class_exists('FirePHP')) {
-                throw new \Exception('FirePHP is not installed or its main file isn\'t being included');
-            }
+            include_once('../vendor/autoload.php');
 
             $firePHP = \FirePHP::getInstance(true);
             $firePHP->log($a, $message);
@@ -211,10 +212,10 @@ class debugInfo {
 
         if (empty($directory)) {
             // Trailing slash always needed, check http://www.php.net/manual/en/function.sys-get-temp-dir.php#80690
-            $directory = realpath(sys_get_temp_dir()) . '/';
+            $directory = realpath(sys_get_temp_dir()).'/';
         }
 
-        $filename = $directory . $filename;
+        $filename = $directory.$filename;
         if (is_writable($filename)) {
             $success = file_put_contents(
                 $filename, // Where to write
