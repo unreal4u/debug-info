@@ -7,14 +7,14 @@ namespace unreal4u;
  *
  * @package debugInfo
  * @author Camilo Sperberg - http://unreal4u.com/
- * @version 2.0
+ * @version 2.0.0
  */
 class debugInfo {
     /**
      * Version of this class
      * @var string
      */
-    private $classVersion = '2.0';
+    private $classVersion = '2.0.0';
 
     /**
      * The format of the timestamp that will be printed, based on strftime
