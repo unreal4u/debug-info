@@ -416,10 +416,10 @@ class debugInfo {
                     $return = sprintf('%.'.$this->decimals.'f', $this->data[$identifier]['endTime'] - $this->data[$identifier]['startTime']);
                 break;
                 case 'memory':
-                    $return = $this->data[$identifier]['endMemorySize'] - $this->data[$identifier]['startMemorySize'];
+                    $return = $this->formatNumber($this->data[$identifier]['endMemorySize'] - $this->data[$identifier]['startMemorySize'], 'KiB', true);
                 break;
                 case 'peakmemory':
-                    $return = $this->data[$identifier]['endMemoryPeakSize'] - $this->data[$identifier]['startMemoryPeakSize'];
+                    $return = $this->formatNumber($this->data[$identifier]['endMemoryPeakSize'] - $this->data[$identifier]['startMemoryPeakSize'], 'KiB', true);
                 break;
                 case 'all':
                     $return = array();
